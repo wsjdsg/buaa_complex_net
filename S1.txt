@@ -1,9 +1,8 @@
-
-<rt2>dis cu
+[S1]dis cu
 #
  version 7.1.070, Release 6126P20
 #
- sysname rt2
+ sysname S1
 #
  irf mac-address persistent timer
  irf auto-update enable
@@ -13,11 +12,11 @@
  router id 1.1.1.2
 #
 ospf 1
- import-route bgp route-policy per1
+ import-route bgp route-policy perl
  preference ase 200
  area 0.0.0.0
   network 1.1.1.2 0.0.0.0
-  network 95.1.2.0 0.0.0.255
+  network 46.1.2.0 0.0.0.255
   network 192.168.1.2 0.0.0.0
 #
  ip unreachables enable
@@ -42,11 +41,11 @@ interface LoopBack1
  ip address 192.168.1.2 255.255.255.255
 #
 interface Vlan-interface10
- ip address 95.1.2.2 255.255.255.0
+ ip address 46.1.2.2 255.255.255.0
 #
 interface Vlan-interface20
- ip address 95.0.0.249 255.255.255.252
-#
+ ip address 46.0.0.249 255.255.255.252
+#              
 interface GigabitEthernet1/0/1
  port access vlan 10
 #
@@ -115,23 +114,22 @@ interface GigabitEthernet1/0/26
 interface GigabitEthernet1/0/27
 #
 interface GigabitEthernet1/0/28
-#
+#              
 interface M-GigabitEthernet0/0/0
 #
 bgp 1
- group as1 internal
- peer as1 connect-interface LoopBack0
- peer 1.1.1.1 group as1
- peer 1.1.1.3 group as1
- peer 1.1.1.4 group as1
- peer 1.1.1.5 group as1
- peer 95.0.0.250 as-number 2
+ group asl internal
+ peer asl connect-interface LoopBack0
+ peer 1.1.1.1 group asl
+ peer 1.1.1.3 group asl
+ peer 1.1.1.4 group asl
+ peer 1.1.1.5 group asl
+ peer 46.0.0.250 as-number 2
  #
  address-family ipv4 unicast
   preference 255 110 110
   aggregate 192.168.1.0 255.255.255.0 detail-suppressed
   import-route ospf 1
-  network 95.3.112.242 255.255.255.255
   network 172.16.1.0 255.255.255.0
   network 192.168.1.2 255.255.255.255
   network 192.168.1.4 255.255.255.255
@@ -139,11 +137,11 @@ bgp 1
   network 192.168.1.100 255.255.255.255
   network 192.168.1.129 255.255.255.255
   network 192.168.1.130 255.255.255.255
-  peer as1 enable
-  peer as1 next-hop-local
-  peer 95.0.0.250 enable
+  peer asl enable
+  peer asl next-hop-local
+  peer 46.0.0.250 enable
 #
-route-policy per1 permit node 10
+route-policy perl permit node 10
  if-match ip address acl 2001
  apply cost 200
 #
@@ -161,11 +159,11 @@ line class vty
 line aux 0
  user-role network-admin
 #
-line vty 0 63
+line vty 0 63  
  user-role network-operator
 #
 acl number 2001
- rule 0 permit source 95.4.13.0 0.0.0.255
+ rule 0 permit source 46.4.13.0 0.0.0.255
  rule 5 deny
 #
 radius scheme system
@@ -207,7 +205,7 @@ role name level-9
 #
 role name level-10
  description Predefined level-10 role
-#
+#              
 role name level-11
  description Predefined level-11 role
 #
@@ -223,3 +221,4 @@ role name level-14
 user-group system
 #
 return
+[S1]                        

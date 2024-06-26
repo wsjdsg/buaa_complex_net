@@ -1,4 +1,4 @@
-<S2>dis cu
+[S2]dis cu
 #
  version 7.1.070, Release 6126P20
 #
@@ -15,14 +15,14 @@ ospf 1
  import-route bgp 2
  area 0.0.0.0
   network 2.1.1.16 0.0.0.0
-  network 95.2.0.0 0.0.255.255
+  network 46.2.0.0 0.0.255.255
   network 192.168.2.16 0.0.0.0
 #
  ip unreachables enable
  ip ttl-expires enable
 #
  lldp global enable
-#
+#              
  password-recovery enable
 #
 vlan 1
@@ -42,10 +42,10 @@ interface LoopBack1
  ip address 192.168.2.16 255.255.255.255
 #
 interface Vlan-interface10
- ip address 95.2.2.16 255.255.255.0
+ ip address 46.2.2.16 255.255.255.0
 #
 interface Vlan-interface20
- ip address 95.0.0.250 255.255.255.252
+ ip address 46.0.0.250 255.255.255.252
 #
 interface GigabitEthernet1/0/1
  port access vlan 10
@@ -68,7 +68,7 @@ interface GigabitEthernet1/0/8
 interface GigabitEthernet1/0/9
 #
 interface GigabitEthernet1/0/10
-#
+#              
 interface GigabitEthernet1/0/11
 #
 interface GigabitEthernet1/0/12
@@ -91,7 +91,7 @@ interface GigabitEthernet1/0/18
 #
 interface GigabitEthernet1/0/19
  combo enable copper
-#
+#              
 interface GigabitEthernet1/0/20
  combo enable copper
 #
@@ -124,12 +124,12 @@ bgp 2
  peer 2.1.1.15 group as2
  peer 2.1.1.17 group as2
  peer 2.1.1.18 group as2
- peer 95.0.0.249 as-number 1
+ peer 46.0.0.249 as-number 1
  #
  address-family ipv4 unicast
   peer as2 enable
   peer as2 next-hop-local
-  peer 95.0.0.249 enable
+  peer 46.0.0.249 enable
 #
 route-policy import_bgp permit node 10
  if-match ip address prefix-list permit_snmp_out
@@ -139,10 +139,10 @@ route-policy import_ospf permit node 10
 #
  ip prefix-list permit_export index 10 permit 192.168.126.242 32
  ip prefix-list permit_export index 20 permit 192.168.2.0 24
- ip prefix-list permit_export index 30 permit 95.4.10.0 24
- ip prefix-list permit_export index 40 permit 95.4.11.0 24
- ip prefix-list permit_export index 50 permit 95.4.12.0 24
- ip prefix-list permit_export index 60 permit 95.4.13.0 24
+ ip prefix-list permit_export index 30 permit 46.4.10.0 24
+ ip prefix-list permit_export index 40 permit 46.4.11.0 24
+ ip prefix-list permit_export index 50 permit 46.4.12.0 24
+ ip prefix-list permit_export index 60 permit 46.4.13.0 24
  ip prefix-list permit_snmp_in index 10 permit 192.168.2.0 24
  ip prefix-list permit_snmp_out index 10 permit 192.168.1.0 24
  ip prefix-list permit_snmp_out index 20 permit 192.168.3.0 24
@@ -160,7 +160,7 @@ line class vty
 #
 line aux 0
  user-role network-admin
-#
+#              
 line vty 0 63
  user-role network-operator
 #
@@ -206,7 +206,7 @@ role name level-10
 #
 role name level-11
  description Predefined level-11 role
-#
+#              
 role name level-12
  description Predefined level-12 role
 #
@@ -219,4 +219,4 @@ role name level-14
 user-group system
 #
 return
-<S2>
+[S2]       
